@@ -294,9 +294,33 @@ npm install babel-eslint --save-dev
 }
 ```
 
+Code back to working again. 
 
+One last thing. Manually run `npm run build` and refresh browser is not very smooth.
 
+### [webpack-dev-server](https://webpack.js.org/configuration/dev-server/)
 
+```shell
+npm install --save-dev webpack-dev-server
+```
+
+Add development script
+
+```json
+{
+  "scripts": {
+    "start": "webpack-dev-server --open"
+  }
+}
+```
+
+`--open` means to automatically open browser, sometimes it's useful, sometimes it's annoying.
+
+---
+
+That's a lot of work before diving into project implementation. And I haven't include any advanced configuration.
+
+There's still a long way to go from here. 
 
 
 
