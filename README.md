@@ -1,4 +1,4 @@
-# hacker-news
+# Hacker News
 
 Build a project from very scratch.
 
@@ -74,7 +74,7 @@ Add configuration file:
 npx eslint --init
 ```
 
-Follow the instructions.
+Follow the instructions. Notice that webpack uses node, so under the question "Where does your code run?" Select both "Browser" and "Node".
 
 Install VSCode [ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 
