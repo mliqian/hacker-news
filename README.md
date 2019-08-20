@@ -166,7 +166,50 @@ Add mode config.
 }
 ```
 
-Everything works fine now.
+Everything seems fine now. But there comes another problem. The `<script>` tag inside `index.html` point to `index.js`. But after adding webpack, the final output file is `dist/main.js`. 
+
+Two things about `dist` folder:
+
+1. It's auto generated, and included in the `.gitignore` file
+2. It should contain everything in order to be publish-ready.
+
+Conclusion: `index.html` should be auto generated inside `dist` folder.
+
+### HtmlWebpackPlugin
+
+```shell
+npm install --save-dev html-webpack-plugin
+```
+
+`webpack.config.js`
+
+```js
+{
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "src/index.html")
+    })
+  ]
+}
+```
+
+Run `npm run build` and `index.html` file will be auto generated inside `dist` directory, using `stc/index.html` as template.
+
+### React.createElement
+
+`index.js`
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+
+ReactDOM.render(
+  React.createElement("h1", null, "Hacker News"),
+  document.getElementById("root")
+);
+```
+
+
 
 
 
