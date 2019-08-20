@@ -321,22 +321,3 @@ Add development script
 That's a lot of work before diving into project implementation. And I haven't include any advanced configuration.
 
 There's still a long way to go from here. 
-
-
-
-
-
-```shell
-npm install --save-dev --save-exact prettier
-```
-
-According to the [guide](https://prettier.io/docs/en/install.html):
-
-> We recommend pinning an exact version of prettier in your `package.json` as we introduce stylistic changes in patch releases.
-
-
-
-
-
-
-
