@@ -175,7 +175,7 @@ Two things about `dist` folder:
 
 Conclusion: `index.html` should be auto generated inside `dist` folder.
 
-### HtmlWebpackPlugin
+### [HtmlWebpackPlugin](https://github.com/jantimon/html-webpack-plugin)
 
 ```shell
 npm install --save-dev html-webpack-plugin
@@ -195,7 +195,7 @@ npm install --save-dev html-webpack-plugin
 
 Run `npm run build` and `index.html` file will be auto generated inside `dist` directory, using `stc/index.html` as template.
 
-### React.createElement
+### [React.createElement](https://reactjs.org/docs/react-api.html#createelement)
 
 `index.js`
 
@@ -207,6 +207,91 @@ ReactDOM.render(
   React.createElement("h1", null, "Hacker News"),
   document.getElementById("root")
 );
+```
+
+Run build command and open `dist/index.html`. Finally there is something on the page.
+
+### [JSX](https://reactjs.org/docs/introducing-jsx.html)
+
+Rewrite `index.js`
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+
+function App() {
+  return <h1>Hacker News</h1>;
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+
+As expect, there is a build error:
+
+```
+Module parse failed: Unexpected token (5:9)
+You may need an appropriate loader to handle this file type,
+```
+
+A loader is needed to transform JSX into standard js, like the last part.
+
+### [Babel](https://babeljs.io/)
+
+Install packages
+
+```shell
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-loader
+```
+
+The first three are used to compile new javascript syntax and jsx into browser-compatible javascript.
+
+`babel-loader` is for webpack to let babel handle `.js` file bundle process.
+
+Create `babel.config.js`
+
+```js
+const presets = ["@babel/preset-env", "@babel/preset-react"];
+
+module.exports = {
+  presets
+};
+```
+
+Add config to `webpack.config.js`
+
+```js
+{
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: "babel-loader"
+      }
+    ]
+  }
+}
+```
+
+Now build command should work.
+
+But for some reason, ESLint complains about jsx syntax.  
+
+```
+Parsing error: Unexpected token / 
+```
+
+After some research, I add `babel-eslint` parser option, and change `eslint-plugin-react` configuration
+
+```
+npm install babel-eslint --save-dev
+```
+
+```js
+// .eslintrc.js
+{
+   parser: "babel-eslint",
+   extends: ["eslint:recommended", "plugin:react/recommended"],
+}
 ```
 
 
