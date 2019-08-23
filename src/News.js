@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { formatUnixTime } from "./utils";
 
 const MSG_NUMS = 15;
 
@@ -40,17 +41,6 @@ function News({ url }) {
       ))}
     </ul>
   );
-}
-
-function formatUnixTime(timestamp) {
-  const date = new Date(timestamp * 1000);
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const hour = date.getHours();
-  const minute = date.getMinutes();
-
-  return `${month}/${day}/${year}, ${hour}:${minute}`;
 }
 
 News.propTypes = {
