@@ -1,8 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import News from "./News";
 
 function Nav() {
+  let theme = "light";
   return (
     <div>
       <ul>
@@ -13,6 +15,7 @@ function Nav() {
           <Link to="/new">NEW</Link>
         </li>
       </ul>
+      <div>{theme == "light" ? "🌒" : "🌕"}</div>
     </div>
   );
 }
@@ -29,7 +32,7 @@ function App() {
     <div>
       <Router>
         <Nav />
-        <Route exact path="/" component={TopNews} />
+        <Route exact path="/" component={News} />
         <Route path="/new" component={NewNews} />
       </Router>
     </div>
