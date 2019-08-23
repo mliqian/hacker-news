@@ -21,10 +21,12 @@ function Nav() {
 }
 
 function TopNews() {
-  return <h1>Top News</h1>;
+  const topNewsUrl = "https://hacker-news.firebaseio.com/v0/topstories.json";
+  return <News url={topNewsUrl} />;
 }
 function NewNews() {
-  return <h1>Newest News</h1>;
+  const newestNewsUrl = "https://hacker-news.firebaseio.com/v0/newstories.json";
+  return <News url={newestNewsUrl} />;
 }
 
 function App() {
@@ -32,7 +34,7 @@ function App() {
     <div>
       <Router>
         <Nav />
-        <Route exact path="/" component={News} />
+        <Route exact path="/" component={TopNews} />
         <Route path="/new" component={NewNews} />
       </Router>
     </div>

@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 
 const MSG_NUMS = 15;
 
-function News() {
+function News({ url }) {
   let [loading, setLoading] = useState(true);
   let [newsList, setNewsList] = useState([]);
-  const url =
-    "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
 
   useEffect(() => {
+    setLoading(true);
     fetch(url)
       .then(res => res.json())
       .then(newsIds => {
@@ -45,7 +44,7 @@ function News() {
 function formatUnixTime(timestamp) {
   const date = new Date(timestamp * 1000);
   const year = date.getFullYear();
-  const month = date.getMonth();
+  const month = date.getMonth() + 1;
   const day = date.getDate();
   const hour = date.getHours();
   const minute = date.getMinutes();
