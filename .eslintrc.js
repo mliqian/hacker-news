@@ -13,6 +13,10 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module"
   },
+  plugins: ["react-hooks"],
   parser: "babel-eslint",
-  rules: { "react/jsx-uses-react": "error" }
+  rules: {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
 };
