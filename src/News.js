@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 const MSG_NUMS = 15;
 
@@ -51,5 +52,9 @@ function formatUnixTime(timestamp) {
 
   return `${month}/${day}/${year}, ${hour}:${minute}`;
 }
+
+News.propTypes = {
+  url: PropTypes.string.isRequired
+};
 
 export default News;
