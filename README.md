@@ -3,6 +3,7 @@
 Build a project from very scratch.
 
 ## Init
+
 Create a directory for this project.
 
 I'm going to use [React](https://reactjs.org/). Using `<script>` is an option, but [npm](https://www.npmjs.com/) seems to be a more popular choice. So ...
@@ -31,10 +32,10 @@ Add `<script>` tag to load `index.js`, and a root element as container:
 To use React, import it in `index.js`
 
 ```js
-import React from 'react';
+import React from "react";
 ```
 
-In the browser, an error occur: 
+In the browser, an error occur:
 
 ```error
 Uncaught SyntaxError: Unexpected identifier
@@ -46,7 +47,7 @@ Use [webpack](https://webpack.js.org/) to fix this. But before that, dealing wit
 
 ### Prettier
 
-[Prettier](https://prettier.io/) is a nice solution. Since this is my own project, there is no need to force somebody to use it. So I'm going to use [Visual Studio Code](https://code.visualstudio.com/)'s  [prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), instead of installing prettier package locally.
+[Prettier](https://prettier.io/) is a nice solution. Since this is my own project, there is no need to force somebody to use it. So I'm going to use [Visual Studio Code](https://code.visualstudio.com/)'s [prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), instead of installing prettier package locally.
 
 In editor's setting panel, turn on `Prettier: Require Config` and `Editor: Format On Save`. This way, only project with `.prettierrc` or [other configuration file](https://prettier.io/docs/en/configuration.html) will "format on save".
 
@@ -78,7 +79,7 @@ Follow the instructions. Notice that webpack uses node, so under the question "W
 
 Install VSCode [ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 
-Restart  to enable plugin (show the red underline).
+Restart to enable plugin (show the red underline).
 
 I don't have a code style now. Maybe use a extension is a good choice, like [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb). Will see if needed along the way.
 
@@ -118,9 +119,9 @@ Create config file `webpack.config.js`. Add entry and output config
 
 ```js
 module.exports = {
-  entry: './src/index.js',
-  output: './dist/main.js' // wrong, see below
-}
+  entry: "./src/index.js",
+  output: "./dist/main.js" // wrong, see below
+};
 ```
 
 Same as default, but explicit.
@@ -137,18 +138,18 @@ After `npm run build` and some modification, two errors were found:
 Fix it.
 
 ```js
-const path = require('path')
+const path = require("path");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist")
   }
-}
+};
 ```
 
-Use `path` package to generate absolute path. 
+Use `path` package to generate absolute path.
 
 No error now but a warning.
 
@@ -162,11 +163,11 @@ Add mode config.
 
 ```js
 {
-	mode: "development"
+  mode: "development";
 }
 ```
 
-Everything seems fine now. But there comes another problem. The `<script>` tag inside `index.html` point to `index.js`. But after adding webpack, the final output file is `dist/main.js`. 
+Everything seems fine now. But there comes another problem. The `<script>` tag inside `index.html` point to `index.js`. But after adding webpack, the final output file is `dist/main.js`.
 
 Two things about `dist` folder:
 
@@ -189,7 +190,7 @@ npm install --save-dev html-webpack-plugin
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.html")
     })
-  ]
+  ];
 }
 ```
 
@@ -267,17 +268,17 @@ Add config to `webpack.config.js`
         test: /\.js$/,
         use: "babel-loader"
       }
-    ]
+    ];
   }
 }
 ```
 
 Now build command should work.
 
-But for some reason, ESLint complains about jsx syntax.  
+But for some reason, ESLint complains about jsx syntax.
 
 ```
-Parsing error: Unexpected token / 
+Parsing error: Unexpected token /
 ```
 
 After some research, I add `babel-eslint` parser option, and change `eslint-plugin-react` configuration
@@ -294,7 +295,7 @@ npm install babel-eslint --save-dev
 }
 ```
 
-Code back to working again. 
+Code back to working again.
 
 One last thing. Manually run `npm run build` and refresh browser is not very smooth.
 
@@ -318,6 +319,4 @@ Add development script
 
 ---
 
-That's a lot of work before diving into project implementation. And I haven't include any advanced configuration.
-
-There's still a long way to go from here. 
+That's a lot of work before diving into project implementation. Yet this is far from complete. There's still a lot of work to do.
