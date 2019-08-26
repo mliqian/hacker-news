@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { formatUnixTime } from "./utils";
+import Loading from "./Loading";
 
 const MSG_NUMS = 15;
 
@@ -25,7 +26,7 @@ function News({ url }) {
       });
   }, [url]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loading />;
 
   return (
     <ul className="news-list">
