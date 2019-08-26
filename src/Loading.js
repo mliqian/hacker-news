@@ -13,13 +13,15 @@ function Loading({ initialText }) {
   useEffect(
     function() {
       let timerid = window.setInterval(function() {
-        setText(text => (text === `${initialText}...` ? text : text + "."));
+        setText(text =>
+          text === `${initialText}...` ? initialText : text + "."
+        );
       }, 300);
       return () => window.clearInterval(timerid);
     },
     [initialText]
   );
-
+  console.log("变量输出 text: ", text);
   return <div style={loadingStyle}>{text}</div>;
 }
 

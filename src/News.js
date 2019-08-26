@@ -5,11 +5,19 @@ import Loading from "./Loading";
 
 const MSG_NUMS = 15;
 
+let cache = {};
+
 function News({ url }) {
-  let [loading, setLoading] = useState(true);
+  let [loading, setLoading] = useState(false);
   let [newsList, setNewsList] = useState([]);
 
   useEffect(() => {
+    console.log("变量输出 cache[url]: ", cache[url]);
+    if (cache[url]) {
+      setLoading(false);
+      setNewsList(cache[url]);
+      return;
+    }
     setLoading(true);
     fetch(url)
       .then(res => res.json())
@@ -22,6 +30,7 @@ function News({ url }) {
         ).then(list => {
           setNewsList(list);
           setLoading(false);
+          cache[url] = list;
         });
       });
   }, [url]);
