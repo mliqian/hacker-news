@@ -1,25 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import News from "./News";
 import "./index.css";
-
-function Nav() {
-  let theme = "light";
-  return (
-    <div>
-      <ul>
-        <li>
-          <Link to="/">TOP</Link>
-        </li>
-        <li>
-          <Link to="/new">NEW</Link>
-        </li>
-      </ul>
-      <div>{theme == "light" ? "🌒" : "🌕"}</div>
-    </div>
-  );
-}
+import Nav from "./Nav";
 
 function TopNews() {
   const topNewsUrl = "https://hacker-news.firebaseio.com/v0/topstories.json";
@@ -32,7 +16,7 @@ function NewNews() {
 
 function App() {
   return (
-    <div>
+    <div className="root-container">
       <Router>
         <Nav />
         <Route exact path="/" component={TopNews} />
