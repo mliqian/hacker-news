@@ -4,7 +4,7 @@ ul {
 
 a {
   text-decoration: none;
-  color: red;
+  color: chocolate;
 }
 
 /* index.js - BEGIN */
@@ -34,10 +34,26 @@ a {
 }
 
 .nav__link.nav__link--active {
-  color: red;
+  color: orangered;
 }
 
 .theme-switch {
   cursor: pointer;
 }
 /* Nav.js - END */
+
+/* News.js -BEGIN */
+.news-list {
+  line-height: 1.75;
+  color: gray;
+}
+.news-item {
+  margin-bottom: 10px;
+}
+.news-item__title {
+  font-weight: 700;
+}
+.news-item__info a {
+  text-decoration: underline;
+}
+/* News.js -END */

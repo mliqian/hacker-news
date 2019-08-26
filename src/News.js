@@ -28,11 +28,13 @@ function News({ url }) {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <ul>
+    <ul className="news-list">
       {newsList.map((item, index) => (
-        <li key={index}>
-          <a href={item.url}>{item.title}</a>
-          <div>
+        <li key={index} className="news-item">
+          <a href={item.url} className="news-item__title">
+            {item.title}
+          </a>
+          <div className="news-item__info">
             by <a href={"item.authorLink"}>{item.by}</a> on{" "}
             {formatUnixTime(item.time)} with{" "}
             <a href="item.commentUrl">{item.descendants}</a> comments
