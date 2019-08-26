@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import News from "./News";
+import "./index.css";
 
 function Nav() {
   let theme = "light";
