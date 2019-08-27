@@ -64,3 +64,16 @@ a {
   text-decoration: underline;
 }
 /* News.js -END */
+
+/* User.js -BEGIN */
+.user-table {
+  margin: 10px;
+}
+.user-table td:first-child {
+  font-weight: bold;
+  text-align: right;
+}
+.user-table td {
+  padding: 5px 10px;
+}
+/* User.js -END */
