@@ -1,3 +1,6 @@
+body {
+  overflow-y: scroll;
+}
 ul {
   list-style: none;
 }

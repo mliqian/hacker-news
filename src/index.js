@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import News from "./News";
 import "./index.css";
 import Nav from "./Nav";
+import User from "./User";
+import NewsItem from "./NewsItem";
 
 function TopNews() {
   const topNewsUrl = "https://hacker-news.firebaseio.com/v0/topstories.json";
@@ -21,6 +23,8 @@ function App() {
         <Nav />
         <Route exact path="/" component={TopNews} />
         <Route path="/new" component={NewNews} />
+        <Route path="/user" component={User} />
+        <Route path="/item" component={NewsItem} />
       </Router>
     </div>
   );

@@ -21,7 +21,6 @@ function Loading({ initialText }) {
     },
     [initialText]
   );
-  console.log("变量输出 text: ", text);
   return <div style={loadingStyle}>{text}</div>;
 }
 

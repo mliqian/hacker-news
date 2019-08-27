@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { formatUnixTime } from "./utils";
 import Loading from "./Loading";
+import { Link } from "react-router-dom";
 
 const MSG_NUMS = 15;
 
@@ -39,15 +40,15 @@ function News({ url }) {
 
   return (
     <ul className="news-list">
-      {newsList.map((item, index) => (
-        <li key={index} className="news-item">
+      {newsList.map(item => (
+        <li key={item.id} className="news-item">
           <a href={item.url} className="news-item__title">
             {item.title}
           </a>
           <div className="news-item__info">
-            by <a href={"item.authorLink"}>{item.by}</a> on{" "}
+            by <Link to={`/user?id=${item.by}`}>{item.by}</Link> on{" "}
             {formatUnixTime(item.time)} with{" "}
-            <a href="item.commentUrl">{item.descendants}</a> comments
+            <Link to={`/item?id=${item.id}`}>{item.descendants}</Link> comments
           </div>
         </li>
       ))}
