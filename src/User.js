@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import queryString from "query-string";
 import Loading from "./Loading";
-import { formatUserCreatedTime } from "./utils";
+import { formatUnixTime } from "./utils";
+import News from "./News";
 
 /*
 User: {
@@ -30,26 +31,15 @@ function User({ location }) {
     return <Loading />;
   }
   return (
-    <table className="user-table">
-      <tbody>
-        <tr>
-          <td>User:</td>
-          <td>{user.id}</td>
-        </tr>
-        <tr>
-          <td>Created:</td>
-          <td>{formatUserCreatedTime(user.created)}</td>
-        </tr>
-        <tr>
-          <td>karma:</td>
-          <td>{user.karma}</td>
-        </tr>
-        <tr>
-          <td>about:</td>
-          <td>{user.about}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      <h1>{user.id}</h1>
+      <div>
+        joined {formatUnixTime(user.created)} has {user.karma} karma
+      </div>
+      <div>{user.about}</div>
+      <h2>Posts</h2>
+      <News ids={user.submitted} />
+    </div>
   );
 }
 
