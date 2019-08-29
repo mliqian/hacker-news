@@ -36,7 +36,7 @@ function User({ location }) {
       <div>
         joined {formatUnixTime(user.created)} has {user.karma} karma
       </div>
-      <div>{user.about}</div>
+      <div dangerouslySetInnerHTML={{ __html: user.about }}></div>
       <h2>Posts</h2>
       <News ids={user.submitted} />
     </div>
