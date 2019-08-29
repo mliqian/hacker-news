@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { formatUnixTime } from "./utils";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
+import Error from "./Error";
 
 const MSG_NUMS = 15;
 
@@ -10,6 +11,7 @@ let cache = {};
 
 function News({ url }) {
   let [loading, setLoading] = useState(false);
+  let [error, setError] = useState(null);
   let [newsList, setNewsList] = useState([]);
 
   useEffect(() => {
@@ -28,15 +30,27 @@ function News({ url }) {
             let newsUrl = `https://hacker-news.firebaseio.com/v0/item/${id}.json`;
             return fetch(newsUrl).then(res => res.json());
           })
-        ).then(list => {
-          setNewsList(list);
-          setLoading(false);
-          cache[url] = list;
-        });
+        )
+          .then(list => {
+            setNewsList(list);
+            setLoading(false);
+            setError(null);
+            cache[url] = list;
+          })
+          .catch(e => {
+            setError(`Failed to load details: ${e.message}`);
+            setLoading(false);
+          });
+      })
+      .catch(e => {
+        setError(`Failed to load news ids: ${e.message}`);
+        setLoading(false);
       });
   }, [url]);
 
   if (loading) return <Loading />;
+
+  if (error) return <Error message={error} />;
 
   return (
     <ul className="news-list">
