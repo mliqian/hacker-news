@@ -31,9 +31,9 @@ function User({ location }) {
     return <Loading />;
   }
   return (
-    <div>
+    <div className="user-container">
       <h1>{user.id}</h1>
-      <div>
+      <div className="user-info">
         joined {formatUnixTime(user.created)} has {user.karma} karma
       </div>
       <div dangerouslySetInnerHTML={{ __html: user.about }}></div>

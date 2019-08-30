@@ -66,14 +66,10 @@ a {
 /* News.js -END */
 
 /* User.js -BEGIN */
-.user-table {
-  margin: 10px;
+.user-container {
+  padding: 2em;
 }
-.user-table td:first-child {
-  font-weight: bold;
-  text-align: right;
-}
-.user-table td {
-  padding: 5px 10px;
+.user-info {
+  color: gray;
 }
 /* User.js -END */
