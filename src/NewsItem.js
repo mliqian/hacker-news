@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import queryString from "query-string";
 import PropTypes from "prop-types";
 import Loading from "./Loading";
@@ -26,13 +27,13 @@ function NewsItem({ location }) {
   }
 
   return (
-    <div>
-      <h1>{info.title}</h1>
-      <div>
-        by {info.by} {formatUnixTime(info.time)} with {info.descendants}{" "}
-        comments
+    <div className="news-detail">
+      <h1 className="news-detail__title">{info.title}</h1>
+      <div className="news-detail__info">
+        by <Link to={`/user?id=${info.by}`}>{info.by}</Link> on{" "}
+        {formatUnixTime(info.time)} with <em>{info.descendants}</em> comments
       </div>
-      <div>
+      <div className="news-detail__comments">
         {(info.kids || []).map(cid => (
           <Comment key={cid} id={cid} />
         ))}

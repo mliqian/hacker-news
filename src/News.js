@@ -16,7 +16,7 @@ function News({ url, ids }) {
   return (
     <ul className="news-list">
       {newsList
-        .filter(item => item.type == "story")
+        .filter(item => !item.deleted && item.type == "story")
         .map(item => (
           <li key={item.id} className="news-item">
             <a href={item.url} className="news-item__title">
