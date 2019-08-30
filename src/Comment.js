@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { formatUnixTime } from "./utils";
 
 Comment.propTypes = {
   id: PropTypes.number.isRequired
@@ -7,7 +8,7 @@ Comment.propTypes = {
 
 function Comment({ id }) {
   let [data, setData] = useState(null);
-  console.log("变量输出 id: ", id);
+
   useEffect(() => {
     fetch(itemUrl(id))
       .then(res => res.json())
@@ -17,8 +18,14 @@ function Comment({ id }) {
   }, [id]);
   if (!data) return <div></div>;
   return (
-    <div>
+    <div style={{ marginLeft: 30 }}>
       <pre>{JSON.stringify(data)}</pre>
+      <div>
+        by {data.by} {formatUnixTime(data.time)}
+      </div>
+      {(data.kids || []).map(kid => (
+        <Comment key={kid} id={kid} />
+      ))}
     </div>
   );
 }

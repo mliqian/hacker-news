@@ -11,14 +11,12 @@ function itemUrl(id) {
 function NewsItem({ location }) {
   let { id } = queryString.parse(location.search);
   let [info, setInfo] = useState(null);
-  let [comments, setComments] = useState([]);
   useEffect(() => {
     let url = itemUrl(id);
     fetch(url)
       .then(res => res.json())
       .then(info => {
         setInfo(info);
-        setComments(info.kids || []);
       });
   }, [id]);
 
@@ -29,7 +27,7 @@ function NewsItem({ location }) {
   return (
     <div>
       <pre>{JSON.stringify(info, null, 2)}</pre>
-      {comments.map(cid => (
+      {(info.kids || []).map(cid => (
         <Comment key={cid} id={cid} />
       ))}
     </div>
