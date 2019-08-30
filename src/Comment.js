@@ -18,11 +18,11 @@ function Comment({ id }) {
   }, [id]);
   if (!data) return <div></div>;
   return (
-    <div style={{ marginLeft: 30 }}>
-      <pre>{JSON.stringify(data)}</pre>
+    <div style={{ marginLeft: 30, background: "#00000008" }}>
       <div>
         by {data.by} {formatUnixTime(data.time)}
       </div>
+      <p dangerouslySetInnerHTML={{ __html: data.text }}></p>
       {(data.kids || []).map(kid => (
         <Comment key={kid} id={kid} />
       ))}
