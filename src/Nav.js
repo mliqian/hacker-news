@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import ThemeContext from "./ThemeContext";
 
 function Nav() {
-  let theme = "light";
+  let { theme, setTheme } = useContext(ThemeContext);
+  function changeTheme() {
+    setTheme(theme => (theme == "light" ? "dark" : "light"));
+  }
   return (
-    <nav className="topbar">
+    <nav className={`topbar ${theme}`}>
       <ul className="nav">
         <li>
           <NavLink
@@ -26,7 +30,9 @@ function Nav() {
           </NavLink>
         </li>
       </ul>
-      <div className="theme-switch">{theme == "light" ? "🌒" : "🌕"}</div>
+      <div className="theme-switch" onClick={changeTheme}>
+        {theme == "light" ? "🌒" : "🌕"}
+      </div>
     </nav>
   );
 }

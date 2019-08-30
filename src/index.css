@@ -1,3 +1,8 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
 body {
   overflow-y: scroll;
 }
@@ -13,8 +18,8 @@ a {
 /* index.js - BEGIN */
 .root-container {
   max-width: 960px;
-  margin: 20px auto;
-  padding: 0 0 10px;
+  margin: 0 auto;
+  padding: 10px 0;
   background: #f6f6ef;
 }
 /* index.js - END */
